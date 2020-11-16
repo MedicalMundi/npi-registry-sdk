@@ -32,6 +32,12 @@ jobs:
           coverage: none
       - name: Run composer validate
         run: composer validate --strict --no-check-lock --ansi
+      - name: Install composer normalize
+        run: composer require --dev ergebnis/composer-normalize
+      - name: Run composer normalize
+        run: composer normalize --dry-run
+
+
 
   code-style-check:
     runs-on: ubuntu-latest
