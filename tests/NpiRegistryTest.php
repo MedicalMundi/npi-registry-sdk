@@ -21,6 +21,15 @@ class NpiRegistryTest extends TestCase
     }
 
     /** @test */
+    public function it_can_be_created_with_url(): void
+    {
+        $npiRegistry = new NpiRegistry($endpoint = 'http://example.com');
+
+        self::assertInstanceOf(NpiRegistry::class, $npiRegistry);
+        self::assertEquals($endpoint, $npiRegistry->uri());
+    }
+
+    /** @test */
     public function it_can_create_with_factory_method_connect(): void
     {
         $npiRegistry = NpiRegistry::connect();
@@ -30,15 +39,11 @@ class NpiRegistryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_fetch_search_results_from_the_api()
+    public function it_can_be_created_with_factory_method_connect_and_url(): void
     {
-        $client = NpiRegistry::connect();
+        $npiRegistry = NpiRegistry::connect($endpoint = 'http://example.com');
 
-        $this->assertIsObject(
-            $client->search
-                ->where('version', '2.1')
-                ->where('city', 'atlanta')
-                ->fetch()
-        );
+        self::assertInstanceOf(NpiRegistry::class, $npiRegistry);
+        self::assertEquals($endpoint, $npiRegistry->uri());
     }
 }
