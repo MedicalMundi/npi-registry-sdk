@@ -1,0 +1,9 @@
+/.idea/
+/.vscode/
+.php_cs.cache
+.phpunit.result.cache
+
+/extra/
+/vendor/
+
+composer.lock

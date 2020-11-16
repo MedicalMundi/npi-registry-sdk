@@ -1,2 +1,2 @@
-# npi-registry-php-usdk
-PHP Http client for NPI Registry Public records.
+# NPI Registry php-usdk
+HTTP client for the NPI Registry Public records api.
