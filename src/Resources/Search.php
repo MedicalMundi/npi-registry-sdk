@@ -1,12 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace MedicalMundi\NpiRegistry\SDK\Resources;
 
 use JustSteveKing\PhpSdk\Resources\AbstractResource;
 
-class Search extends AbstractResource
+final class Search extends AbstractResource
 {
     protected string $path = '/api';
 

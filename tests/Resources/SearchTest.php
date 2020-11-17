@@ -1,6 +1,5 @@
 <?php declare(strict_types=1);
 
-
 namespace MedicalMundi\NpiRegistry\SDK\Tests\Resources;
 
 use JustSteveKing\HttpSlim\HttpClient;
