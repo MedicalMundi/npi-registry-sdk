@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace MedicalMundi\NpiRegistry\SDK\Tests;
 
@@ -30,7 +28,7 @@ class NpiRegistryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_factory_method_connect(): void
+    public function it_can_be_created_with_factory_method_connect(): void
     {
         $npiRegistry = NpiRegistry::connect();
 

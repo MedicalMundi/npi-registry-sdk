@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace MedicalMundi\NpiRegistry\SDK;
 
@@ -15,21 +13,23 @@ use Symfony\Component\HttpClient\Psr18Client;
 
 class NpiRegistry extends Client
 {
-    public function __construct(string $url = 'https://npiregistry.cms.hhs.gov')
+    private const NPI_REGISTRY_URL = 'https://npiregistry.cms.hhs.gov';
+
+    public function __construct(string $url = self::NPI_REGISTRY_URL)
     {
         parent::__construct(new ClientBuilder(
             Uri::fromString($url),
             HttpClient::build(
-                new Psr18Client(), // http client (psr-18)
-                new Psr18Client(), // request factory (psr-17)
-                new Psr18Client() // stream factory (psr-17)
+                new Psr18Client(),
+                new Psr18Client(),
+                new Psr18Client()
             ),
             new NullStrategy(),
-            new Container() // container (psr-11)
+            new Container()
         ));
     }
 
-    public static function connect(string $url = 'https://npiregistry.cms.hhs.gov'): self
+    public static function connect(string $url = self::NPI_REGISTRY_URL): self
     {
         $client = new self($url);
         $client->addResource('search', new Search());
