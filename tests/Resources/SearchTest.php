@@ -28,7 +28,7 @@ class SearchTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_all_actions()
+    public function it_can_search_and_fetch_api()
     {
         $this->client->search
             ->where('version', '2.1')
