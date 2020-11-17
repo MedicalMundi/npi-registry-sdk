@@ -24,9 +24,10 @@ use MedicalMundi\NpiRegistry\SDK\NpiRegistry;
 $npiRegistry = NpiRegistry::connect();
 ```
 
-## Searching provider
+## Searching providers
 
-You create a Npi registry SDK like so:
+You create a Npi registry service,
+use a search resource like so:
 
 ```php
 use MedicalMundi\NpiRegistry\SDK\NpiRegistry;
