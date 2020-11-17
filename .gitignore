@@ -4,6 +4,7 @@
 .phpunit.result.cache
 
 /extra/
+/var/
 /vendor/
 
 composer.lock
