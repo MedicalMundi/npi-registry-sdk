@@ -1,5 +1,5 @@
 # NPI Registry SDK
-HTTP client for the NPI Registry Public records api.
+HTTP client for the [National Provider Identifier Registry Public records api](https://npiregistry.cms.hhs.gov/registry/help-api).
 
 ## Requirements
 
