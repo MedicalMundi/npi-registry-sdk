@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, feature/** ]
   pull_request:
     branches: [ main ]
 
@@ -44,7 +44,7 @@ jobs:
         run: php-cs-fixer fix --dry-run --diff --ansi
 
   phpunit:
-    name: PHPUnit (PHP ${{ matrix.php }})
+    name: PHPUnit (PHP ${{ matrix.php }}) - ${{ matrix.dependency-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -54,6 +54,7 @@ jobs:
         include:
           - php: '7.4'
             coverage: false
+        dependency-version: [prefer-lowest, prefer-stable]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -65,6 +66,6 @@ jobs:
           coverage: none
           tools: composer:v1
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --ansi
+        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress --no-suggest --ansi
       - name: Run PHPUnit tests
         run: vendor/bin/phpunit --colors=always
