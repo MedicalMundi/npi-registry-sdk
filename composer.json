@@ -1,5 +1,5 @@
 {
-    "name": "medicalmundi/npi-registry-php-usdk",
+    "name": "medicalmundi/npi-registry-php-sdk",
     "type": "library",
     "description": "HTTP client for the NPI Registry Public records api.",
     "license": "MIT",
@@ -7,6 +7,10 @@
         {
             "name": "Zerai Teclai",
             "email": "teclaizerai@gmail.com"
+        },
+        {
+            "name": "Francesca Bonadonna",
+            "email": "francescabonadonna@medicalmundi.com"
         }
     ],
     "require": {
