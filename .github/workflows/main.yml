@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  COVERAGE: '0'
+
 jobs:
   lint-composer:
     runs-on: ubuntu-latest
@@ -53,7 +56,7 @@ jobs:
           - 'rc'
         include:
           - php: '7.4'
-            coverage: false
+            coverage: true
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -66,5 +69,24 @@ jobs:
           tools: composer:v1
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --ansi
+      - name: Enable code coverage
+        if: matrix.coverage
+        run: echo '::set-env name=COVERAGE::1'
       - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --colors=always
+        run: |
+          mkdir -p reports/phpunit
+          if [ "$COVERAGE" = '1' ]; then
+            vendor/bin/phpunit --coverage-clover reports/phpunit/clover.xml --log-junit reports/phpunit/junit.xml --colors=always
+          else
+            vendor/bin/phpunit --colors=always
+          fi
+      - name: Upload coverage results to Codecov
+        if: matrix.coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          directory: ./reports/phpunit/
+          name: phpunit-php${{ matrix.php }}
+          flags: unit-test
+          fail_ci_if_error: true
+        continue-on-error: true
