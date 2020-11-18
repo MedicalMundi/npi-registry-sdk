@@ -8,7 +8,7 @@ $npiRegistry = NpiRegistry::connect();
 
 
 /*
- * search by organization name and state
+ * search by organization name
  */
 $result = $npiRegistry->search
     ->where('version', '2.1') // api version is mandatory
@@ -34,7 +34,7 @@ var_dump($result->results);
 
 
 /*
- * search by organization name and state
+ * search by city
  */
 $result = $npiRegistry->search
     ->where('version', '2.1') // api version is mandatory
