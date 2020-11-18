@@ -71,7 +71,8 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest --ansi
       - name: Enable code coverage
         if: matrix.coverage
-        run: echo '::set-env name=COVERAGE::1'
+        #run: echo '::set-env name=COVERAGE::1'
+        run: echo "COVERAGE=1" >> $GITHUB_ENV
       - name: Run PHPUnit tests
         run: |
           mkdir -p reports/phpunit
