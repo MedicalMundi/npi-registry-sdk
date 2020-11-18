@@ -53,7 +53,7 @@ jobs:
       matrix:
         php:
           - '7.4'
-          - 'rc'
+          - '8.0'
         include:
           - php: '7.4'
             coverage: true
@@ -65,13 +65,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: none
+          coverage: pcov
           tools: composer:v1
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --ansi
       - name: Enable code coverage
         if: matrix.coverage
-        #run: echo '::set-env name=COVERAGE::1'
         run: echo "COVERAGE=1" >> $GITHUB_ENV
       - name: Run PHPUnit tests
         run: |
@@ -85,7 +84,6 @@ jobs:
         if: matrix.coverage
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage.xml
           directory: ./reports/phpunit/
           name: phpunit-php${{ matrix.php }}
           flags: unit-test
