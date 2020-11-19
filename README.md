@@ -17,7 +17,7 @@ HTTP client for the [National Provider Identifier Registry Public records api](h
 The preferred method of installation is to use composer:
 
 ```bash
-$ composer require medicalmundi/npi-registry-sdk
+$ composer require medicalmundi/npi-registry-php-sdk
 ```
 
 ## Usage
