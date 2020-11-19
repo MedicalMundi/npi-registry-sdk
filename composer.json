@@ -1,5 +1,5 @@
 {
-    "name": "medicalmundi/npi-registry-php-usdk",
+    "name": "medicalmundi/npi-registry-php-sdk",
     "type": "library",
     "description": "HTTP client for the NPI Registry Public records api.",
     "license": "MIT",
@@ -7,6 +7,10 @@
         {
             "name": "Zerai Teclai",
             "email": "teclaizerai@gmail.com"
+        },
+        {
+            "name": "Francesca Bonadonna",
+            "email": "francescabonadonna@medicalmundi.com"
         }
     ],
     "require": {
@@ -15,6 +19,7 @@
         "juststeveking/php-sdk": "^1.1",
         "nyholm/psr7": "^1.3",
         "php-di/php-di": "^6.0",
+        "php-http/guzzle6-adapter": "^2.0",
         "symfony/http-client": "^4.4"
     },
     "require-dev": {
