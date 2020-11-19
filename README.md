@@ -1,15 +1,11 @@
 # NPI Registry SDK
 HTTP client for the [National Provider Identifier Registry Public records api](https://npiregistry.cms.hhs.gov/registry/help-api).
 
-<!-- BADGES_START -->
 [![Version](https://poser.pugx.org/medicalmundi/npi-registry-php-sdk/version)](//packagist.org/packages/medicalmundi/npi-registry-php-sdk)
 [![License](https://poser.pugx.org/medicalmundi/npi-registry-php-sdk/license)](//packagist.org/packages/medicalmundi/npi-registry-php-sdk)
-![tests](https://github.com/MedicalMundi/npi-registry-sdk/workflows/.github/workflows/main.yml/badge.svg)
 [![Total Downloads](https://poser.pugx.org/medicalmundi/npi-registry-php-sdk/downloads)](//packagist.org/packages/medicalmundi/npi-registry-php-sdk)
-
 [![Latest Unstable Version](https://poser.pugx.org/medicalmundi/npi-registry-php-sdk/v/unstable)](//packagist.org/packages/medicalmundi/npi-registry-php-sdk)
 [![composer.lock](https://poser.pugx.org/medicalmundi/npi-registry-php-sdk/composerlock)](//packagist.org/packages/medicalmundi/npi-registry-php-sdk)
-<!-- BADGES_END -->
 
 ## Requirements
 
