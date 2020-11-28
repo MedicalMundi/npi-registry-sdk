@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 | ^8.0",
         "ext-json": "*",
         "juststeveking/php-sdk": "^1.1",
         "nyholm/psr7": "^1.3",
