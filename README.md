@@ -10,7 +10,7 @@ HTTP client for the [National Provider Identifier Registry Public records api](h
 
 ## Requirements
 
-- PHP ^7.4
+- PHP ^7.4 | ^8.0
 - PHP ext-json
 
 ## Installation
