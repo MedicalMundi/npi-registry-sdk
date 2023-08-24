@@ -94,6 +94,7 @@ jobs:
     name: PHPUnit (PHP ${{ matrix.php }}) - ${{ matrix.dependency-version }}
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 3
       matrix:
         php:
           - '7.4'
