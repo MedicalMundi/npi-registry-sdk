@@ -29,10 +29,10 @@
         "phpunit/phpunit": "^9.0"
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "php-http/discovery": true
-        }
+        },
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
