@@ -26,10 +26,13 @@
         "friendsofphp/php-cs-fixer": "^2.17",
         "malukenho/docheader": "^0.1.8",
         "php-http/mock-client": "^1.4",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^9.0"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "autoload": {
         "psr-4": {
