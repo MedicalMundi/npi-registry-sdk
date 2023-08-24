@@ -10,21 +10,6 @@ env:
   COVERAGE: '0'
 
 jobs:
-  lint-composer:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: QA - Run composer validate
-        uses: docker://jakzal/phpqa:php7.4-alpine
-        with:
-          args: composer validate --strict --no-check-lock --ansi
-      - name: QA - Run composer normalize
-        uses: docker://jakzal/phpqa:php7.4-alpine
-        with:
-          args: composer normalize --dry-run
-
   checks-composer:
     name: Validate Composer
     runs-on: ubuntu-22.04
@@ -98,10 +83,12 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           ini-values: memory_limit=-1
-          tools: php-cs-fixer
           coverage: none
+          tools: composer:v1
+      - name: Install Composer dependencies
+        run: composer update --prefer-dist --no-progress --no-suggest --ansi
       - name: Run PHP-CS-Fixer fix
-        run: php-cs-fixer fix --dry-run --diff --ansi
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --ansi
 
   phpunit:
     name: PHPUnit (PHP ${{ matrix.php }}) - ${{ matrix.dependency-version }}
