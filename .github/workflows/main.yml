@@ -131,12 +131,13 @@ jobs:
     name: PHPUnit (PHP ${{ matrix.php }}) - ${{ matrix.dependency-version }}
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 3
+      max-parallel: 10
       matrix:
         php:
           - '7.4'
           - '8.0'
           - '8.1'
+          - '8.2'
         include:
           - php: '7.4'
             coverage: false
@@ -144,18 +145,38 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - name: setup-php
-        id: setup-php
-        uses: shivammathur/setup-php@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.25.5
         with:
           php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: memory_limit=-1
           coverage: pcov
-          tools: composer:v1
+          tools: composer
+
+      - name: Set Composer Cache Directory
+        if: ${{ vars.USE_COMPOSER_CACHE }}
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: ${{ vars.USE_COMPOSER_CACHE }}
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
       - name: Install Composer dependencies
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-progress --no-suggest --ansi
+
       - name: Enable code coverage
         if: matrix.coverage
         run: echo "COVERAGE=1" >> $GITHUB_ENV
+
       - name: Run PHPUnit tests
         run: |
           mkdir -p reports/phpunit
@@ -164,6 +185,7 @@ jobs:
           else
             vendor/bin/phpunit --colors=always
           fi
+
       - name: Upload coverage results to Codecov
         if: matrix.coverage
         uses: codecov/codecov-action@v1
