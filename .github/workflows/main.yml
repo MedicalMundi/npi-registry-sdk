@@ -96,15 +96,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@2.25.5
         with:
           php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: memory_limit=-1
           coverage: none
-          tools: composer:v1
+          tools: composer
+
+      - name: Set Composer Cache Directory
+        if: ${{ vars.USE_COMPOSER_CACHE }}
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: ${{ vars.USE_COMPOSER_CACHE }}
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
       - name: Install Composer dependencies
         run: composer update --prefer-dist --no-progress --no-suggest --ansi
+
       - name: Run PHP-CS-Fixer fix
         run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --ansi
 
