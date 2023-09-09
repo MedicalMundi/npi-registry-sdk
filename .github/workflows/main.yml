@@ -8,6 +8,9 @@ on:
 
 env:
   COVERAGE: '0'
+  # PHP SETTINGS
+  PHP_EXTENSIONS: 'json'
+  PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
 
 jobs:
   checks-composer:
