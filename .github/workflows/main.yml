@@ -24,7 +24,7 @@ jobs:
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.triggering-sha }}
 
@@ -39,14 +39,14 @@ jobs:
 
       - name: Cache PHP extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
           key: ${{ steps.cache-php-extensions.outputs.key }}
           restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.5
+        uses: shivammathur/setup-php@2.31.1
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -61,7 +61,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         if: ${{ vars.USE_COMPOSER_CACHE }}
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -95,10 +95,10 @@ jobs:
 #      fail-fast: false
 #    steps:
 #      - name: Checkout
-#        uses: actions/checkout@v2
+#        uses: actions/checkout@v4
 #
 #      - name: Setup PHP
-#        uses: shivammathur/setup-php@2.25.5
+#        uses: shivammathur/setup-php@2.31.1
 #        with:
 #          php-version: ${{ matrix.php }}
 #          extensions: ${{ env.PHP_EXTENSIONS }}
@@ -113,7 +113,7 @@ jobs:
 #          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 #
 #      - name: Cache Composer dependencies
-#        uses: actions/cache@v3
+#        uses: actions/cache@v4
 #        if: ${{ vars.USE_COMPOSER_CACHE }}
 #        with:
 #          path: ${{ steps.composer-cache.outputs.dir }}
@@ -145,10 +145,10 @@ jobs:
         dependency-version: [prefer-lowest, prefer-stable]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.5
+        uses: shivammathur/setup-php@2.31.1
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -163,7 +163,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         if: ${{ vars.USE_COMPOSER_CACHE }}
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -189,7 +189,7 @@ jobs:
 
       - name: Upload coverage results to Codecov
         if: matrix.coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v4
         with:
           directory: ./reports/phpunit/
           name: phpunit-php${{ matrix.php }}
@@ -207,10 +207,10 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.5
+        uses: shivammathur/setup-php@2.31.1
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -225,7 +225,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         if: ${{ vars.USE_COMPOSER_CACHE }}
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
