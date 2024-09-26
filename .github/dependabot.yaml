@@ -3,6 +3,20 @@
 version: 2
 
 updates:
+  - package-ecosystem: "composer"
+    target-branch: "main"
+    directory: "/"
+    versioning-strategy: "increase"
+    open-pull-requests-limit: 5
+    schedule:
+      interval: "daily"
+    assignees:
+      - "zerai"
+    commit-message:
+      include: "scope"
+      prefix: "composer"
+    labels:
+      - "PHP dependency"
 
 
 
