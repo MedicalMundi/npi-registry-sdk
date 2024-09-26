@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "malukenho/docheader": "^0.1.8",
-        "php-http/mock-client": "^1.4",
+        "php-http/mock-client": "^1.6",
         "phpunit/phpunit": "^9.0"
     },
     "config": {
