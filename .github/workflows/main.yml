@@ -39,7 +39,7 @@ jobs:
 
       - name: Cache PHP extensions
         if: ${{ vars.USE_PHP_EXTENSION_CACHE }}
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ steps.cache-php-extensions.outputs.dir }}
           key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -61,7 +61,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         if: ${{ vars.USE_COMPOSER_CACHE }}
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -113,7 +113,7 @@ jobs:
 #          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 #
 #      - name: Cache Composer dependencies
-#        uses: actions/cache@v4
+#        uses: actions/cache@v5
 #        if: ${{ vars.USE_COMPOSER_CACHE }}
 #        with:
 #          path: ${{ steps.composer-cache.outputs.dir }}
@@ -163,7 +163,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         if: ${{ vars.USE_COMPOSER_CACHE }}
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -225,7 +225,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         if: ${{ vars.USE_COMPOSER_CACHE }}
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
